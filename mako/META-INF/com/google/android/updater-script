@@ -1,0 +1,65 @@
+ui_print("                REMOVE THE BLOAT!            ");
+ui_print("        +++++++++++++++++++++++++++++++      ");
+ui_print("          Personal Updated Script by         ");
+ui_print("                 Joshndroid =]               ");
+
+ui_print("Now to start getting rid of the unimportant things.....");
+
+show_progress(0.750000, 0);
+
+ui_print("Mounting system...");
+ifelse(is_mounted("/system"), unmount("/system"));
+if ! is_mounted("/system") then
+mount("ext4", "EMMC", "/dev/block/platform/msm_sdcc.1/by-name/system", "/system", "");
+endif;
+
+ui_print("Deleting Useless ROM CM and AOSP System apps I never use...");
+delete_recursive("/system/app/Calculator");
+delete_recursive("/system/app/Calendar");
+delete_recursive("/system/app/Camera2");
+delete_recursive("/system/app/CMFileManager");
+delete_recursive("/system/app/CMWallpapers");
+delete_recursive("/system/app/DocumentsUI");
+delete_recursive("/system/app/Eleven");
+delete_recursive("/system/app/Email");
+delete_recursive("/system/app/Galaxy4");
+delete_recursive("/system/app/Gmail2");
+delete_recursive("system/app/HoloSpiralWallpaper");
+delete_recursive("/system/app/LiveWallpapers");
+delete_recursive("/system/app/LockClock");
+delete_recursive("/system/app/Music2");
+delete_recursive("/system/app/NoiseField");
+delete_recursive("/system/app/PhaseBeam");
+delete_recursive("/system/app/SoundRecorder");
+delete_recursive("/system/app/Stk");
+delete_recursive("/system/app/VisualizationWallpapers");
+
+show_progress(0.020000, 10);
+
+ui_print("Useless Rom Specific Priv-Apps...");
+delete_recursive("/system/priv-app/CalendarProvider");
+delete_recursive("/system/priv-app/Mms");
+delete_recursive("/system/priv-app/Gmail2");
+
+show_progress(0.050000, 5);
+
+ui_print("Useless Languages...");
+delete("/system/tts/lang_pico/de-DE_gl0_sg.bin");
+delete("/system/tts/lang_pico/de-DE_ta.bin");
+delete("/system/tts/lang_pico/fr-FR_nk0_sg.bin");
+delete("/system/tts/lang_pico/fr-FR_ta.bin");
+delete("/system/tts/lang_pico/it-IT_cm0_sg.bin");
+delete("/system/tts/lang_pico/it-IT_ta.bin");
+
+show_progress(0.200000, 10);
+
+ui_print("Deleting Useless GApps System apps I never use...");
+delete_recursive("/system/app/Gmail2");
+delete_recursive("/system/app/Music2");
+
+
+ui_print("");
+ui_print("Unmounting System...");
+unmount("/system");
+
+ui_print("Done.");
