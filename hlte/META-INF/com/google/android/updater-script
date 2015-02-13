@@ -24,6 +24,7 @@ delete_recursive("/system/app/Eleven");
 delete_recursive("/system/app/Email");
 delete_recursive("/system/app/Galaxy4");
 delete_recursive("/system/app/Gmail2");
+delete_recursive("/system/app/PrebuiltGmail");
 delete_recursive("system/app/HoloSpiralWallpaper");
 delete_recursive("/system/app/LiveWallpapers");
 delete_recursive("/system/app/LockClock");
@@ -40,6 +41,7 @@ ui_print("Useless Rom Specific Priv-Apps...");
 delete_recursive("/system/priv-app/CalendarProvider");
 delete_recursive("/system/priv-app/Mms");
 delete_recursive("/system/priv-app/Gmail2");
+delete_recursive("/system/priv-app/PrebuiltGmail");
 
 show_progress(0.050000, 5);
 
