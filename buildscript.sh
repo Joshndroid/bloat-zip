@@ -32,6 +32,12 @@ sleep 2
 cp ~/mygit/bloat-zip/updater-script ~/mygit/bloat-zip/lt03wifi/META-INF/com/google/android/updater-script
 echo "done"
 
+#angler
+echo "Copying updater script to flounder"
+sleep 2
+cp ~/mygit/bloat-zip/updater-script ~/mygit/bloat-zip/angler/META-INF/com/google/android/updater-script
+echo "done"
+
 #Need to then packge the files into a zero compression zip file by going into the necessary target device folder and then zipping the META-INF to a zip
 
 #flounder
@@ -71,6 +77,14 @@ echo "Zipping lt03wifi"
 sleep 2
 cd ~/mygit/bloat-zip/lt03wifi/
 zip -r -0 bloatlt03wifi.zip META-INF
+cd ~/mygit/bloat-zip/
+echo "done"
+
+#Angler
+echo "Zipping angler"
+sleep 2
+cd ~/mygit/bloat-zip/angler/
+zip -r -0 bloatangler.zip META-INF
 cd ~/mygit/bloat-zip/
 echo "done"
 
