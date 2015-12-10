@@ -24,13 +24,14 @@ delete_recursive("/system/app/Eleven");
 delete_recursive("/system/app/Email");
 delete_recursive("/system/app/Galaxy4");
 delete_recursive("/system/app/Gmail2");
-delete_recursive("/system/app/PrebuiltGmail");
 delete_recursive("system/app/HoloSpiralWallpaper");
 delete_recursive("/system/app/LiveWallpapers");
 delete_recursive("/system/app/LockClock");
 delete_recursive("/system/app/Music2");
 delete_recursive("/system/app/NoiseField");
 delete_recursive("/system/app/PhaseBeam");
+delete_recursive("/system/app/PhotoPhase");
+delete_recursive("/system/app/PhotoTable");
 delete_recursive("/system/app/SoundRecorder");
 delete_recursive("/system/app/Stk");
 delete_recursive("/system/app/VisualizationWallpapers");
@@ -42,6 +43,7 @@ delete_recursive("/system/priv-app/CalendarProvider");
 delete_recursive("/system/priv-app/Mms");
 delete_recursive("/system/priv-app/Gmail2");
 delete_recursive("/system/priv-app/PrebuiltGmail");
+delete_recursive("/system/priv-app/Trebuchet");
 
 show_progress(0.050000, 5);
 
@@ -54,11 +56,6 @@ delete("/system/tts/lang_pico/it-IT_cm0_sg.bin");
 delete("/system/tts/lang_pico/it-IT_ta.bin");
 
 show_progress(0.200000, 10);
-
-ui_print("Deleting Useless GApps System apps I never use...");
-delete_recursive("/system/app/Gmail2");
-delete_recursive("/system/app/Music2");
-
 
 ui_print("");
 ui_print("Unmounting System...");

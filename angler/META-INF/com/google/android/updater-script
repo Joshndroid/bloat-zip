@@ -1,38 +1,64 @@
-assert(getprop("ro.product.device") == "angler" || getprop("ro.build.product") == "angler" || abort("This package is for device: angler; this device is " + getprop("ro.product.device") + "."););
-ui_print("Target: google/angler/angler:6.0.1/MMB29M/2431559:user/release-keys");
-ifelse(is_mounted("/system"), unmount("/system"));
-package_extract_dir("install", "/tmp/install");
-set_metadata_recursive("/tmp/install", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644);
-set_metadata_recursive("/tmp/install/bin", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0755);
-mount("ext4", "EMMC", "/dev/block/platform/soc.0/f9824900.sdhci/by-name/system", "/system", "");
-run_program("/tmp/install/bin/backuptool.sh", "backup");
-unmount("/system");
-if is_mounted("/data") then
-package_extract_file("META-INF/org/cyanogenmod/releasekey", "/tmp/releasekey");
-run_program("/tmp/install/bin/otasigcheck.sh") != "31744" || abort("Can't install this package on top of incompatible data. Please try another package or run a factory reset");
-else
-mount("ext4", "EMMC", "/dev/block/platform/soc.0/f9824900.sdhci/by-name/userdata", "/data", "");
-package_extract_file("META-INF/org/cyanogenmod/releasekey", "/tmp/releasekey");
-run_program("/tmp/install/bin/otasigcheck.sh") != "31744" || abort("Can't install this package on top of incompatible data. Please try another package or run a factory reset");
-unmount("/data");
-endif;
+ui_print("                REMOVE THE BLOAT!            ");
+ui_print("        +++++++++++++++++++++++++++++++      ");
+ui_print("          Personal Updated Script by         ");
+ui_print("                 Joshndroid =]               ");
+
+ui_print("Now to start getting rid of the unimportant things.....");
+
 show_progress(0.750000, 0);
-ui_print("Patching system image unconditionally...");
-block_image_update("/dev/block/platform/soc.0/f9824900.sdhci/by-name/system", package_extract_file("system.transfer.list"), "system.new.dat", "system.patch.dat");
-ui_print("Verifying the updated system image...");
-if range_sha1("/dev/block/platform/soc.0/f9824900.sdhci/by-name/system", "72,0,32770,32961,32963,33471,65535,65536,65538,66046,92227,98304,98306,98497,98499,99007,131071,131072,131074,163840,163842,164033,164035,164543,196607,196608,196610,229376,229378,229569,229571,230079,262143,262144,262146,294912,294914,295105,295107,295615,327679,327680,327682,360448,360450,393216,393218,425984,425986,458752,458754,491520,491522,524288,524290,557056,557058,589824,589826,622592,622594,655360,655362,688128,688130,720896,720898,753664,753666,754174,780230,780231,786384") == "8c3ca943f9d865017c0a7eb8075e67881c01ac88" then
-if range_sha1("/dev/block/platform/soc.0/f9824900.sdhci/by-name/system", "104,32770,32961,32963,33471,65535,65536,65538,66046,92227,92739,97792,98304,98306,98497,98499,99007,131071,131072,131074,131586,163328,163840,163842,164033,164035,164543,196607,196608,196610,197122,228864,229376,229378,229569,229571,230079,262143,262144,262146,262658,294400,294912,294914,295105,295107,295615,327679,327680,327682,328194,359936,360448,360450,360962,392704,393216,393218,393730,425472,425984,425986,426498,458240,458752,458754,459266,491008,491520,491522,492034,523776,524288,524290,524802,556544,557056,557058,557570,589312,589824,589826,590338,622080,622592,622594,623106,654848,655360,655362,655874,687616,688128,688130,688642,720384,720896,720898,721410,753152,753664,753666,754174,780230,780231") == "5cb9d1a74938d1e9fcdacf030777881f5a07016c" then
-ui_print("Verified the updated system image.");
-else
-  abort("system partition has unexpected non-zero contents after OTA update");
+
+ui_print("Mounting system...");
+ifelse(is_mounted("/system"), unmount("/system"));
+if ! is_mounted("/system") then
+mount("ext4", "EMMC", "/dev/block/platform/msm_sdcc.1/by-name/system", "/system", "");
 endif;
-else
-  abort("system partition has unexpected contents after OTA update");
-endif;
+
+ui_print("Deleting Useless ROM CM and AOSP System apps I never use...");
+delete_recursive("/system/app/Calculator");
+delete_recursive("/system/app/Calendar");
+delete_recursive("/system/app/Camera2");
+delete_recursive("/system/app/CMFileManager");
+delete_recursive("/system/app/CMWallpapers");
+delete_recursive("/system/app/DocumentsUI");
+delete_recursive("/system/app/Eleven");
+delete_recursive("/system/app/Email");
+delete_recursive("/system/app/Galaxy4");
+delete_recursive("/system/app/Gmail2");
+delete_recursive("system/app/HoloSpiralWallpaper");
+delete_recursive("/system/app/LiveWallpapers");
+delete_recursive("/system/app/LockClock");
+delete_recursive("/system/app/Music2");
+delete_recursive("/system/app/NoiseField");
+delete_recursive("/system/app/PhaseBeam");
+delete_recursive("/system/app/PhotoPhase");
+delete_recursive("/system/app/PhotoTable");
+delete_recursive("/system/app/SoundRecorder");
+delete_recursive("/system/app/Stk");
+delete_recursive("/system/app/VisualizationWallpapers");
+
 show_progress(0.020000, 10);
-mount("ext4", "EMMC", "/dev/block/platform/soc.0/f9824900.sdhci/by-name/system", "/system", "");
-run_program("/tmp/install/bin/backuptool.sh", "restore");
-unmount("/system");
+
+ui_print("Useless Rom Specific Priv-Apps...");
+delete_recursive("/system/priv-app/CalendarProvider");
+delete_recursive("/system/priv-app/Mms");
+delete_recursive("/system/priv-app/Gmail2");
+delete_recursive("/system/priv-app/PrebuiltGmail");
+delete_recursive("/system/priv-app/Trebuchet");
+
 show_progress(0.050000, 5);
-package_extract_file("boot.img", "/dev/block/platform/soc.0/f9824900.sdhci/by-name/boot");
+
+ui_print("Useless Languages...");
+delete("/system/tts/lang_pico/de-DE_gl0_sg.bin");
+delete("/system/tts/lang_pico/de-DE_ta.bin");
+delete("/system/tts/lang_pico/fr-FR_nk0_sg.bin");
+delete("/system/tts/lang_pico/fr-FR_ta.bin");
+delete("/system/tts/lang_pico/it-IT_cm0_sg.bin");
+delete("/system/tts/lang_pico/it-IT_ta.bin");
+
 show_progress(0.200000, 10);
+
+ui_print("");
+ui_print("Unmounting System...");
+unmount("/system");
+
+ui_print("Done.");

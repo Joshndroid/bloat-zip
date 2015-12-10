@@ -33,7 +33,7 @@ cp ~/bloat-zip/updater-script ~/bloat-zip/lt03wifi/META-INF/com/google/android/u
 echo "done"
 
 #angler
-echo "Copying updater script to angler"
+echo "Copying updater script to flounder"
 sleep 2
 cp ~/bloat-zip/updater-script ~/bloat-zip/angler/META-INF/com/google/android/updater-script
 echo "done"
@@ -44,7 +44,7 @@ echo "done"
 echo "Zipping flounder"
 sleep 2
 cd ~/bloat-zip/flounder/
-zip -r -0 debloatflounder.zip META-INF
+zip -r -0 bloatflounder.zip META-INF
 cd ~/bloat-zip/
 echo "done"
 
@@ -52,7 +52,7 @@ echo "done"
 echo "Zipping hlte"
 sleep 2
 cd ~/bloat-zip/hlte/
-zip -r -0 debloathlte.zip META-INF
+zip -r -0 bloathlte.zip META-INF
 cd ~/bloat-zip/
 echo "done"
 
@@ -60,7 +60,7 @@ echo "done"
 echo "Zipping klte"
 sleep 2
 cd ~/bloat-zip/klte/
-zip -r -0 debloatklte.zip META-INF
+zip -r -0 bloatklte.zip META-INF
 cd ~/bloat-zip/
 echo "done"
 
@@ -68,7 +68,7 @@ echo "done"
 echo "Zipping mako"
 sleep 2
 cd ~/bloat-zip/mako/
-zip -r -0 debloatmako.zip META-INF
+zip -r -0 bloatmako.zip META-INF
 cd ~/bloat-zip/
 echo "done"
 
@@ -76,7 +76,7 @@ echo "done"
 echo "Zipping lt03wifi"
 sleep 2
 cd ~/bloat-zip/lt03wifi/
-zip -r -0 debloatlt03wifi.zip META-INF
+zip -r -0 bloatlt03wifi.zip META-INF
 cd ~/bloat-zip/
 echo "done"
 
@@ -84,7 +84,7 @@ echo "done"
 echo "Zipping angler"
 sleep 2
 cd ~/bloat-zip/angler/
-zip -r -0 debloatangler.zip META-INF
+zip -r -0 bloatangler.zip META-INF
 cd ~/bloat-zip/
 echo "done"
 
